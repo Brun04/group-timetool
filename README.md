@@ -1,8 +1,8 @@
-# Group Time Tool
-<img src="/images/timetool500" style="float: right; height:100px;">
-A LizMap custom JavaScript to display time series as a video or a GIF.
 
----
+# Group Time Tool
+
+A LizMap custom JavaScript to display time series as a video or a GIF.
+<img style="float: right;" src="/images/timetool500.png" alt="Logo" width="20"/>
 
 ## Requirements and install
 
@@ -31,7 +31,7 @@ repositoryName/
 			    |__ gif.worker.js.map
 ```
 
-For more details, consult the documentation available [here](https://github.com/Brun04/group-timetool/-/raw/master/doc/Group_time_tool.pdf?inline=false)
+For more details, consult the documentation available [here](https://github.com/Brun04/group-timetool/blob/master/doc/Group_time_tool.pdf?inline=false)
 
 ## Example
 
