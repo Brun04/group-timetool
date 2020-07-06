@@ -31,7 +31,7 @@ repositoryName/
 			    |__ gif.worker.js.map
 ```
 
-For more details, consult the documentation available [here](https://github.com/Brun04/group-timetool/blob/master/doc/Group_time_tool.pdf?inline=false)
+For more details, consult the documentation available [here](/doc/Group_time_tool.pdf?inline=false)
 
 ## Example
 
