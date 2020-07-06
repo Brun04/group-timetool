@@ -1,7 +1,6 @@
 # Group Time Tool
+<img src="/images/timetool500" style="float: right; height:100px;">
 A LizMap custom JavaScript to display time series as a video or a GIF.
-
-![](/images/timetool500.png)
 
 ---
 
