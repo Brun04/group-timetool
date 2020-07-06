@@ -37,6 +37,8 @@ For more details, consult the documentation available [here](https://github.com/
 
 ![](/doc/covid19-Deaths_FR.gif)
 
+*Data source: OpenCOVID19-fr*
+
 ---
 
 ## Authors
