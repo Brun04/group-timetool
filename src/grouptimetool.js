@@ -112,9 +112,13 @@ lizMap.events.on({
 				(such as alphaCharYYYY-MM-DD or alphaCharYYYY_MM_DD )
 				and has a valid geometry type.
 			**/
-			//TODO: adapt regex to detect a string and not only a char.
 			var regex = /^[a-zA-Z]{1}[0-9]{4}_*-*[0-9]{2}_*-*[0-9]{2}/;
 			return config.type == 'layer' && regex.test(layerName) && config.geometryType != 'none' && config.geometryType != 'undefined' && config.geometryType != '';
+		}
+
+		function isGeoTemporalGroup(groupLayers){
+			for(i in groupLayers){if(isGeoTemporalLayer(groupLayers[i].name, groupLayers[i].config)){return true;}}
+			return false;
 		}
 		
 		function sortingByDate(strDate1, strDate2){
@@ -139,12 +143,12 @@ lizMap.events.on({
 			setTimeout(function(){removeMessage();}, duration);
 		}
 		
-		function removeMessage(){$('.'+toolName+'-message').remove();}
+		function removeMessage(){$('.'+toolName+'-message').remove();}	
 
 		function setGroupsSelector(){
 			var children = lizMap.tree.children;
 			for(c in children){
-				if(children[c].config.type == 'group'){
+				if(children[c].config.type == 'group' && isGeoTemporalGroup(children[c].children)){
 					$("<option>"+children[c].config.name+"</option>").insertAfter('#'+toolName+' #defaultOpt');
 					groups.unshift({grp: children[c], loaded: false, blob: undefined});
 				}
@@ -157,11 +161,7 @@ lizMap.events.on({
 				var currentLay = map.getLayersByName(geoTimeLayers[i].cleanname)[0];
 				if(typeof currentLay !== 'undefined'){currentLay.setVisibility(true);}
 				currentLay.events.on({
-					loadstart: function(e){//TODO
-						//$('div.liz-dialog-wait').css('display', 'block');},
-					},
 					loadend: function(e){
-						//$('div.liz-dialog-wait').css('display', 'none');
 						loadedLayers++;
 						if(loadedLayers <= nbLayers){addMessage('Loaded: '+loadedLayers+'/'+nbLayers, 1500);}
 						if(loadedLayers == nbLayers){
@@ -181,23 +181,20 @@ lizMap.events.on({
 					if( isGeoTemporalLayer(grpLayers[i].name, grpLayers[i].config) ){ geoTimeLayers.push(grpLayers[i].config); }
 				}
 				nbLayers = geoTimeLayers.length
-				if(nbLayers > 0){
-					geoTimeLayers.sort(function(e1, e2){return sortingByDate(e1.name, e2.name);})// Sort layers chronologically
-					
-					if(groups[selectedGrp.selectedIndex -1].loaded){setStateNavButtons(false, false, false, false, false);}// Layers already loaded
-					else{loadLayers();}// Load layers
-					
-					// Init view
-					$('#'+toolName+'-date-label').css('display', 'inline');
-					$('#'+toolName+'-legend').attr('src',  $('#legend-'+geoTimeLayers[0].cleanname+' img').get(0).dataset.src);
-					first();
-					// A GIF has already been generated
-					if(groups[selectedGrp.selectedIndex -1].blob){$('#downloadGif').attr('disabled', false);}
+				geoTimeLayers.sort(function(e1, e2){return sortingByDate(e1.name, e2.name);})// Sort layers chronologically
+				
+				if(groups[selectedGrp.selectedIndex -1].loaded){setStateNavButtons(false, false, false, false, false);}// Layers already loaded
+				else{loadLayers();}// Load layers
+				
+				// Init view
+				$('#'+toolName+'-date-label').css('display', 'inline');
+				$('#'+toolName+'-legend').attr('src',  $('#legend-'+geoTimeLayers[0].cleanname+' img').get(0).dataset.src);
+				first();
+				// A GIF has already been generated
+				if(groups[selectedGrp.selectedIndex -1].blob){$('#downloadGif').attr('disabled', false);}
 
-					return 0;
-				}else{addMessage('No spation-temporal layer in this group.', 5000);}
+				return 0;
 			}else{addMessage('Invalid group selected.', 5000);}
-			resetTimetool();
 			return 1;
 		}
 
