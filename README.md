@@ -41,8 +41,5 @@ For more details, consult the documentation available [here](/doc/Group_time_too
 
 ---
 
-## Authors
-
-
-
 ## Licence
+**MIT**
