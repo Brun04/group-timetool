@@ -8,7 +8,7 @@ A LizMap custom JavaScript to display time series as a video or a GIF.
 
 The tool uses two JavaScript libraries to work:
 * html2canvas (http://html2canvas.hertzen.com/), an API to capture the canvas of a DOM element.
-* gif.js (https://jnordberg.github.io/gif.js/), a GIF encoder which has to be downloaded here. The files contained in the dist folder have to be place in a folder named gif.js-0.2.0.
+* gif.js (https://jnordberg.github.io/gif.js/), a GIF encoder which has to be downloaded [here](https://github.com/jnordberg/gif.js). The files contained in the dist folder have to be place in a folder named gif.js-0.2.0.
 
 
 The source code is available in the **src** folder while the images are disponible in the **images** folder. The tool is integrated in the LizMap project by following the below tree structure:
